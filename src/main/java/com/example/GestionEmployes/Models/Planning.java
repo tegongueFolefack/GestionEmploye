@@ -4,6 +4,11 @@ package com.example.GestionEmployes.Models;
 
 import java.util.Date;
 
+import org.modelmapper.ModelMapper;
+
+import com.example.GestionEmployes.DTO.FonctionDTO;
+import com.example.GestionEmployes.DTO.PlanningDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -54,5 +59,11 @@ public class Planning {
 		// TODO Auto-generated constructor stub
 	}
 		
+	public PlanningDTO toPlanningDTO() {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(this, PlanningDTO.class);
+    }
+
+
 	
 }

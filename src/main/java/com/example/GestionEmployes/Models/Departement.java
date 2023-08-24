@@ -2,16 +2,29 @@ package com.example.GestionEmployes.Models;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.modelmapper.ModelMapper;
+
+import com.example.GestionEmployes.DTO.AdminDTO;
+import com.example.GestionEmployes.DTO.DepartementDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
+
 
 @Data
 @Entity
@@ -20,25 +33,22 @@ public class Departement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name ="id")
-	private int ID_depart;
+	private int id;
 	
-	private String Nom_depart;
+	private String nom_departement;
 
 	@ManyToOne
 	private Admin admin;
 	
-	@ManyToMany(mappedBy = "departement")
-	private Collection<Fonction> fonction =new ArrayList<>();
+	@ManyToMany (fetch = FetchType.EAGER) 
+	private Collection<Fonction>  fonction = new ArrayList<>();
 	
 	
 	
 	@OneToMany
 	private Collection<Utilisateur> utilisateur = new ArrayList<>();
 	
-	public Departement(String nom_depart) {
-		super();
-		Nom_depart = nom_depart;
-	}
+	
 
 
 	public Departement() {
@@ -46,7 +56,15 @@ public class Departement {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	public DepartementDTO toDepartementDTO() {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(this, DepartementDTO.class);
+    }
+
+	public Departement(String nom_departement) {
+		super();
+		this.nom_departement = nom_departement;
+	}
 	
 	
 

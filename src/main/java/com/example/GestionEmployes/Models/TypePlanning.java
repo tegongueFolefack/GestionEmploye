@@ -3,6 +3,11 @@ package com.example.GestionEmployes.Models;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.modelmapper.ModelMapper;
+
+import com.example.GestionEmployes.DTO.RoleDTO;
+import com.example.GestionEmployes.DTO.TypePlanningDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +23,7 @@ public class TypePlanning {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int ID_type_planning;
+	private int id;
 	
 	private String nom_type;
 	
@@ -35,5 +40,8 @@ public class TypePlanning {
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	public TypePlanningDTO toTypePlanningDTO() {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(this, TypePlanningDTO.class);
+    }
 }

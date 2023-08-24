@@ -2,26 +2,37 @@ package com.example.GestionEmployes.DTO;
 
 import java.util.Date;
 
+import org.modelmapper.ModelMapper;
+
+import com.example.GestionEmployes.Models.Admin;
+import com.example.GestionEmployes.Models.Paiement;
+
 import lombok.Data;
 
 @Data
 public class PaiementDTO {
 
-	private double Total_heure;
-	private Date Date_paiement;
-	private Date Periode_paiement;
-	private double Precompte_professionnel;
-	private double Cotisation_ONSS;
-	private double Retenue_Retraite;
-	private double Retenue_Chaumage;
-	private double Retenu_total;
-	private double ONSS_Renum;
-	private double Suppl_transport;
-	private double Primes_HS;
-	private double Prime_Prestation;
-	private double Prime_Equipe;
-	private double Total_prime;
-	private double Total_brut;
-	private double Total_imposable;
-	private double Total_Net;
+	private double total_heure;
+	private Date date_paiement;
+	private Date periode_paiement;
+	private double precompte_professionnel;
+	private double cotisation_onss;
+	private double retenue_retraite;
+	private double retenue_chaumage;
+	private double retenu_total;
+	private double onss_renum;
+	private double suppl_transport;
+	private double primes_hs;
+	private double prime_prestation;
+	private double prime_equipe;
+	private double total_prime;
+	private double total_brut;
+	private double total_imposable;
+	private double total_net;
+	
+	
+	public Paiement toPaiement() {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(this, Paiement.class);
+    }
 }

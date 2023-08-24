@@ -6,6 +6,6 @@ import com.example.GestionEmployes.Models.Admin;
 
 
 
-public interface AdminRepository extends CrudRepository<Admin, Integer> {
+public interface AdminRepository extends CrudRepository<Admin, Long> {
 
 }

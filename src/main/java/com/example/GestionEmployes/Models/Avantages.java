@@ -4,6 +4,11 @@ package com.example.GestionEmployes.Models;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.modelmapper.ModelMapper;
+
+import com.example.GestionEmployes.DTO.AvantagesDTO;
+import com.example.GestionEmployes.DTO.UtilisateurDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,6 +39,12 @@ public class Avantages {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public AvantagesDTO toAvantagesDTO() {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(this, AvantagesDTO.class);
+    }
+	
 	
 	
 }
